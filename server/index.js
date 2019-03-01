@@ -1,16 +1,15 @@
-import express from 'express';
-import path from 'path';
-
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
+const express = require('express');
+const path = require('path');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
 import webpackConfig from '../webpack.config.dev';
 
-let app = express();
+const app = express();
 
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
-app.get('/*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'./index.html'))
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, './index.html'));
 });
 
-app.listen(2323,()=>console.log('server started and listening to 2323'));
+app.listen(2323, () => console.log('server started and listening to 2323'));
